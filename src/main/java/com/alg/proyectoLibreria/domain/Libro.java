@@ -1,49 +1,60 @@
 package com.alg.proyectoLibreria.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 @Entity
-public class Libro {
+@NamedQuery(name="Libro.findAll", query="SELECT l FROM Libro l")
+public class Libro implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id                                             
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
-    private String nombre;
-    private String autor;
-    private String precio;
-    
-    @ManyToOne
-    private Sucursal sucursal;
-    
-	public Integer getId() {
-		return id;
+	private int id;
+	private String autor;
+	private String nombre;
+	private double precio;
+
+	public Libro() {
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 	public String getAutor() {
-		return autor;
+		return this.autor;
 	}
+
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public String getPrecio() {
-		return precio;
+
+	public int getId() {
+		return this.id;
 	}
-	public void setPrecio(String precio) {
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public double getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-    
-    
 
 }
