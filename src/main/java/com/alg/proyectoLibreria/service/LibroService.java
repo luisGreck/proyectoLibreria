@@ -6,4 +6,5 @@ import com.alg.proyectoLibreria.domain.Libro;
 
 public interface LibroService {
 	public List<Libro> buscarLibro(String nombre);
+	public List<Libro> obtenerLibros();
 }

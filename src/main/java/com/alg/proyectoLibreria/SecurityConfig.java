@@ -19,8 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private DataSource dataSource;
-	@Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+	//@Autowired
+    //private AuthenticationSuccessHandler authenticationSuccessHandler;
 	
 	//Definicion de roles y usuarios
 	
@@ -40,17 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/","/login").permitAll()
 		.antMatchers(HttpMethod.POST,"/venta").hasRole("VENTA")	// para vender debes ser rol de ventas
-		.antMatchers("/libro/**").authenticated()				// para existencias solo necesita estar logeado			
+		.antMatchers("/libro/**").authenticated();				// para existencias solo necesita estar logeado			
 		//.antMatchers("/**").authenticated() 						
 		//.antMatchers("/contactos/**").authenticated()
-		.and()
-        .formLogin()
-        .loginPage("/login")
-        .successHandler(authenticationSuccessHandler)
-         .failureUrl("/login?error=0")
-         .and()
-	        .exceptionHandling()
-	          .accessDeniedPage("/access-denied");
+
 	}
 	
 	@Bean
